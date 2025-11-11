@@ -1,6 +1,6 @@
-# 🚀 Kuhn Poker Solver — CFR Implementation (C++ & CUDA)
+# CFR Kuhn Poker Solver (CUDA)
 
-This repository implements the **Counterfactual Regret Minimization (CFR)** algorithm for the simplified poker game **Kuhn Poker** — both in **pure C++** and **CUDA-parallelized** versions.
+This repository implements the **Counterfactual Regret Minimization (CFR)** algorithm for the simplified poker game **Kuhn Poker** in **CUDA-parallelized** versions.
 
 The algorithm converges to the **Nash equilibrium**, producing optimal mixed strategies for both players.
 
@@ -27,7 +27,7 @@ EV(Player 1) ≈ -0.055
 EV(Player 2) ≈ +0.055
 ```
 
-Both C++ and CUDA implementations converge to these values.
+CUDA implementations converge to these values.
 
 ---
 
@@ -81,20 +81,26 @@ cmake --build .
 ## ✅ Output Example
 
 ```
-Player 1 expected value: -0.0569
-Player 2 expected value: 0.0569
+Elapsed time: 403.635 ms
 
---- Average Strategies ---
+Player 1 expected value: -0.0566698
+Player 2 expected value: 0.0566698
 
-Player 1:
-  [Card=J, Hist=""]   [call=0.82, bet=0.18]
-  [Card=Q, Hist=""]   [call=0.03, bet=0.97]
-  [Card=K, Hist=""]   [call=0.66, bet=0.34]
+Player 1 strategies:
+Jrr      [0.79, 0.21]
+Jrrcb    [1.00, 0.00]
+Qrr      [1.00, 0.00]
+Qrrcb    [0.45, 0.55]
+Krr      [0.39, 0.61]
+Krrcb    [0.00, 1.00]
 
-Player 2:
-  [Card=K, Hist="c"]  [call=0.33, bet=0.67]
-  [Card=Q, Hist="c"]  [call=0.97, bet=0.03]
-  ...
+Player 2 strategies:
+Jrrc     [0.67, 0.33]
+Jrrb     [1.00, 0.00]
+Qrrc     [1.00, 0.00]
+Qrrb     [0.66, 0.34]
+Krrc     [0.00, 1.00]
+Krrb     [0.00, 1.00]
 ```
 
 ✅ These match the known Nash equilibrium strategies.
@@ -116,10 +122,10 @@ Player 2:
 
 ## 🚀 CUDA Version Highlights
 
-✅ Runs CFR iterations in parallel
-✅ Uses shared memory & atomic operations
-✅ Measurable speedup vs CPU version
-✅ Designed for extending to larger poker games
+* Runs CFR iterations in parallel
+* Uses shared memory & atomic operations
+* Measurable speedup vs CPU version
+* Designed for extending to larger poker games
 
 ---
 
